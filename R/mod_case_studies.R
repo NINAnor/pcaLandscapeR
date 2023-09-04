@@ -10,7 +10,7 @@
 mod_case_studies_ui <- function(id){
   ns <- NS(id)
   tagList(
-
+    h4("test from module")
   )
 }
 

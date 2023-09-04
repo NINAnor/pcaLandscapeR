@@ -11,8 +11,35 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic
-    fluidPage(
-      h1("PCA landscape tool")
+    dashboardPage(
+      header = dashboardHeader(title = "PCA landscape toolbox"),
+      sidebar = dashboardSidebar(disable = TRUE),
+      body = dashboardBody(
+        fluidRow(
+          box(title = "Study description",
+              status = "primary",
+              solidHeader = TRUE,
+              collapsible = TRUE,
+              width = 12)),
+        fluidRow(
+          box(title = "Toolbox",
+              status = "primary",
+              solidHeader = TRUE,
+              collapsible = TRUE),
+          box(title = "Study sites",
+              status = "primary",
+              solidHeader = TRUE,
+              collapsible = TRUE,
+                mod_case_studies_ui("case_studies"))
+        ),
+        fluidRow(box(title = "Results",
+                     status = "success",
+                     solidHeader = TRUE,
+                     collapsible = TRUE,
+                     width = 12)),
+      ),
+      controlbar = dashboardControlbar(),
+      # title = "PCA landscape toolbox"
     )
 
   )
