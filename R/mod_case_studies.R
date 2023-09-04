@@ -24,7 +24,7 @@ mod_case_studies_server <- function(id){
   })
 }
 
-# To be copied in the UI
+## To be copied in the UI
 # mod_case_studies_ui("case_studies_1")
 
 ## To be copied in the server
