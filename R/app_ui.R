@@ -7,6 +7,8 @@
 #' @import shinydashboardPlus
 #' @import sf
 #' @import leaflet
+#' @import mapview
+#' @import stringi
 #' @noRd
 app_ui <- function(request) {
   tagList(
@@ -14,11 +16,12 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     dashboardPage(
-      header = dashboardHeader(title = "PCA landscape toolbox"),
-      sidebar = dashboardSidebar(disable = TRUE),
+      header =  dashboardHeader(title = "PCA landscape toolbox"),
+      sidebar = dashboardSidebar(minified = F, disable = T),
       body = dashboardBody(
         fluidRow(
           box(title = "Study description",
+              textOutput("stud_descr"),
               status = "primary",
               solidHeader = TRUE,
               collapsible = TRUE,
@@ -27,7 +30,22 @@ app_ui <- function(request) {
           box(title = "Toolbox",
               status = "primary",
               solidHeader = TRUE,
-              collapsible = TRUE),
+              collapsible = TRUE,
+                fluidRow(
+                  descriptionBlock(header = "The Spatial Delphi tool",
+                                   text = "This tool allows you to map people's perceived ES benefits for a study region")
+                ),
+              br(),
+                fluidRow(
+                  descriptionBlock(header = "The policy coherence analysis",
+                                  text = "A spatial explicit analysis of policy coherence")
+              ),
+              br(),
+              fluidRow(
+                descriptionBlock(header = "Optimal siting of PA / OECM",
+                                 text = "Where and how should the PA / OECM be sited to reach the 30x30 target?")
+              )
+              ),
           box(title = "Study sites",
               status = "primary",
               solidHeader = TRUE,

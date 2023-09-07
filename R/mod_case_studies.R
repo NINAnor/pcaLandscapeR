@@ -25,12 +25,13 @@ mod_case_studies_server <- function(id){
 
     case_study<-sf::st_read("R/base_nuts/case_stud.shp")%>%dplyr::filter(NUTS_ID == "NO060" | NUTS_ID =="FRI12" | NUTS_ID=="SK010")
 
-    map_caseStud<-leaflet(case_study)%>%
-      addPolygons(color = "orange", weight = 3, smoothFactor = 0.5,
-                 opacity = 1.0, fillOpacity = .4)%>%
-      addProviderTiles(providers$CartoDB.Positron)
-
-    output$case_stud_map<-renderLeaflet(map_caseStud)
+    # map_caseStud<-leaflet(case_study)%>%
+    #   addPolygons(color = "orange", weight = 3, smoothFactor = 0.5,
+    #              opacity = 1.0, fillOpacity = .4)%>%
+    #   addProviderTiles(providers$CartoDB.Positron)
+    #
+    # output$case_stud_map<-renderLeaflet(map_caseStud)
+    output$case_stud_map<-renderLeaflet(mapview(case_study)@map)
 
   })
 }
