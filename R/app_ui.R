@@ -5,6 +5,8 @@
 #' @import shiny
 #' @import shinydashboard
 #' @import shinydashboardPlus
+#' @import sf
+#' @import leaflet
 #' @noRd
 app_ui <- function(request) {
   tagList(
