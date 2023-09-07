@@ -27,25 +27,24 @@ app_ui <- function(request) {
               collapsible = TRUE,
               width = 12)),
         fluidRow(
-          box(title = "Toolbox",
-              status = "primary",
-              solidHeader = TRUE,
-              collapsible = TRUE,
-                fluidRow(
-                  descriptionBlock(header = "The Spatial Delphi tool",
-                                   text = "This tool allows you to map people's perceived ES benefits for a study region")
-                ),
-              br(),
-                fluidRow(
-                  descriptionBlock(header = "The policy coherence analysis",
-                                  text = "A spatial explicit analysis of policy coherence")
-              ),
-              br(),
-              fluidRow(
-                descriptionBlock(header = "Optimal siting of PA / OECM",
-                                 text = "Where and how should the PA / OECM be sited to reach the 30x30 target?")
-              )
-              ),
+          box(
+            title = "PAREUS Toolbox",
+            status = "primary",
+            solidHeader = TRUE,
+            collapsible = TRUE,
+            tabsetPanel(
+            # The id lets us use input$tabset1 on the server to find the current tab
+            id = "tabset1",
+            tabPanel("Spatial Delphi tool",
+                     "This tool allows you to map people's perceived ES benefits for a study region",
+                     actionButton("go_spatDel","open tool")),
+            tabPanel("Policy coherence analysis",
+                     "A spatial explicit analysis of policy coherence",
+                     actionButton("go_pol_coher","open tool")),
+            tabPanel("Optimal siting of PA / OECM",
+                     "Where and how should the PA / OECM be sited to reach the 30x30 target?",
+                     actionButton("go_siting","open tool"))
+          )),
           box(title = "Study sites",
               status = "primary",
               solidHeader = TRUE,
