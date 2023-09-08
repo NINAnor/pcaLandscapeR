@@ -8,6 +8,7 @@
 #' @import sf
 #' @import leaflet
 #' @import mapview
+#' @import visNetwork
 #' @import stringi
 #' @noRd
 app_ui <- function(request) {
@@ -52,10 +53,42 @@ app_ui <- function(request) {
                 mod_case_studies_ui("case_studies"))
         ),
         fluidRow(box(title = "Results",
-                     status = "success",
                      solidHeader = TRUE,
                      collapsible = TRUE,
-                     width = 12)),
+                     box(
+                       title = "WP1 Co-creating transformative PCA landscapes",
+                       status = "success",
+                       solidHeader = TRUE,
+                       collapsible = TRUE,
+                       collapsed = TRUE,
+                       width = 12
+                     ),
+                     width = 12,
+                     box(
+                      title = "WP2 Mapping and accounting of socio-ecological PCA landscapes",
+                      status = "success",
+                      solidHeader = TRUE,
+                      collapsible = TRUE,
+                      collapsed = TRUE,
+                      width = 12
+                     ),
+                     box(
+                       title = "WP3 Policy coherence",
+                       status = "success",
+                       solidHeader = TRUE,
+                       collapsible = TRUE,
+                       collapsed = FALSE,
+                       width = 12,
+                       visNetworkOutput("mynetworkid")
+                     ),
+                     box(
+                       title = "WP5 Synthesizing PCA landscapes for sustainability",
+                       status = "success",
+                       solidHeader = TRUE,
+                       collapsible = TRUE,
+                       collapsed = TRUE,
+                       width = 12
+                     ))),
       ),
       controlbar = dashboardControlbar(),
       # title = "PCA landscape toolbox"
