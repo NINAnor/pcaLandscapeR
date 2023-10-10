@@ -26,33 +26,16 @@ app_ui <- function(request) {
               status = "primary",
               solidHeader = TRUE,
               collapsible = TRUE,
-              width = 12)),
-        fluidRow(
-          box(
-            title = "PAREUS Toolbox",
-            status = "primary",
-            solidHeader = TRUE,
-            collapsible = TRUE,
-            tabsetPanel(
-            # The id lets us use input$tabset1 on the server to find the current tab
-            id = "tabset1",
-            tabPanel("Spatial Delphi tool",
-                     "This tool allows you to map people's perceived ES benefits for a study region",
-                     actionButton("go_spatDel","open tool")),
-            tabPanel("Policy coherence analysis",
-                     "A spatial explicit analysis of policy coherence",
-                     actionButton("go_pol_coher","open tool")),
-            tabPanel("Optimal siting of PA / OECM",
-                     "Where and how should the PA / OECM be sited to reach the 30x30 target?",
-                     actionButton("go_siting","open tool"))
-          )),
+              width = 12),
           box(title = "Study sites",
               status = "primary",
               solidHeader = TRUE,
               collapsible = TRUE,
-                mod_case_studies_ui("case_studies"))
-        ),
-        fluidRow(box(title = "Results",
+              mod_case_studies_ui("case_studies"),
+              collapsed = TRUE,
+              width = 12)
+          ),
+        fluidRow(box(title = "PAREUS Results",
                      solidHeader = TRUE,
                      collapsible = TRUE,
                      box(
@@ -65,12 +48,12 @@ app_ui <- function(request) {
                      ),
                      width = 12,
                      box(
-                      title = "WP2 Mapping and accounting of socio-ecological PCA landscapes",
-                      status = "success",
-                      solidHeader = TRUE,
-                      collapsible = TRUE,
-                      collapsed = TRUE,
-                      width = 12
+                       title = "WP2 Mapping and accounting of socio-ecological PCA landscapes",
+                       status = "success",
+                       solidHeader = TRUE,
+                       collapsible = TRUE,
+                       collapsed = TRUE,
+                       width = 12
                      ),
                      box(
                        title = "WP3 Policy coherence",
@@ -89,6 +72,33 @@ app_ui <- function(request) {
                        collapsed = TRUE,
                        width = 12
                      ))),
+        fluidRow(
+          box(
+            title = "The PAREUS workflow - toolbox",
+            status = "primary",
+            solidHeader = TRUE,
+            collapsible = TRUE,
+            tabsetPanel(
+            # The id lets us use input$tabset1 on the server to find the current tab
+            id = "tabset1",
+            type = "pills",
+
+            tabPanel("1. Upload your study area",
+                     "This tool allows you to provide your own region of interest",
+                     mod_def_case_ui("case_studies"),
+                     actionButton("up_data","open tool")),
+            tabPanel("2. Map socio-ecological landscape values",
+                     "Perform an environmental accounting and a mapping of landscape values",
+                     actionButton("env_acc","open tool")),
+            tabPanel("3. Upload policy coherence",
+                     "Upload your policy coherence matrix for your study area",
+                     actionButton("up_policy","open tool")),
+            tabPanel("4. Optimal siting of PA / OECM",
+                     "Where and how should the PA / OECM be sited to reach the 30x30 target?",
+                     actionButton("go_siting","open tool"))
+          ),
+          width = 12)
+        )
       ),
       controlbar = dashboardControlbar(),
       # title = "PCA landscape toolbox"
