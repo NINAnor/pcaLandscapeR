@@ -23,7 +23,7 @@ mod_case_studies_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
 
-    case_study<-sf::st_read("R/base_nuts/case_stud.shp")%>%dplyr::filter(NUTS_ID == "NO060" | NUTS_ID =="FRI12" | NUTS_ID=="SK010")
+    case_study<-sf::st_read("R/base_nuts/NUTS_RG_20M_2021_4326.shp")%>%dplyr::filter(NUTS_ID == "NO060" | NUTS_ID =="FRL" | NUTS_ID=="SK021")%>%select(NUTS_NAME)
 
     # map_caseStud<-leaflet(case_study)%>%
     #   addPolygons(color = "orange", weight = 3, smoothFactor = 0.5,
@@ -31,7 +31,8 @@ mod_case_studies_server <- function(id){
     #   addProviderTiles(providers$CartoDB.Positron)
     #
     # output$case_stud_map<-renderLeaflet(map_caseStud)
-    output$case_stud_map<-renderLeaflet(mapview(case_study)@map)
+    output$case_stud_map<-renderLeaflet(mapview(case_study,legend = TRUE,
+                                                layer.name = 'study areas')@map)
 
   })
 }
